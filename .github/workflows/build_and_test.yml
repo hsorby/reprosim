@@ -82,6 +82,7 @@ jobs:
       if: runner.os == 'Windows'
       id: setup-fortran
       with:
+        compiler: 'intel'
         version: '2023.2'
 #    - name: Install oneAPI HPC kit
 #      if: runner.os == 'Windows'
