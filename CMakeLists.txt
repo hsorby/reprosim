@@ -13,6 +13,10 @@ endif()
 
 get_property(IS_MULTI_CONFIG GLOBAL PROPERTY GENERATOR_IS_MULTI_CONFIG)
 
+if(IS_MULTI_CONFIG)
+  set(CONFIG_DIR_SUFFIX "/$<CONFIG>")
+endif()
+
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
 # Required for creating documentation from restructured text files

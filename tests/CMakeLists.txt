@@ -28,7 +28,6 @@ foreach(t IN LISTS tests)
 endforeach()
 
 string(REGEX REPLACE ", &\n$" " &" TEST_SUITE_LIST_STATEMENT "${TEST_SUITE_LIST_STATEMENT}")
-message(STATUS "${TEST_SUITE_LIST_STATEMENT}")
 set(test-main "${CMAKE_CURRENT_BINARY_DIR}/testmain.f90")
 configure_file(testmain.in.f90 ${test-main})
 list(APPEND test-srcs ${test-main})

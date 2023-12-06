@@ -24,16 +24,16 @@ from setuptools import setup
 doclines = __doc__#.split("\n")
 
 setup(
-	name='reprosim',
-    version='@Reprosim_VERSION@',
-	author='Reproduction and Development Group, Auckland Bioengineering Institute.',
-	author_email='alys.clark@auckland.ac.nz',
-	packages=['reprosim'],
-#	package_data={'reprosim': []},
-	platforms=['any'],
-	url='http://www.abi.auckland.ac.nz/en/about/our-research/development-and-reproductive-health.html',
-	license='http://www.apache.org/licenses/LICENSE-2.0',
-	description='Reprosim library of routines for modelling the reproductive system.',
-	classifiers = filter(None, classifiers.split("\n")),
-	long_description=doclines,
+  name='reprosim',
+  version='@Reprosim_VERSION@',
+  author='Reproduction and Development Group, Auckland Bioengineering Institute.',
+  author_email='alys.clark@auckland.ac.nz',
+  packages=['reprosim'],
+#  package_data={'reprosim': []},
+  platforms=['any'],
+  url='http://www.abi.auckland.ac.nz/en/about/our-research/development-and-reproductive-health.html',
+  license='http://www.apache.org/licenses/LICENSE-2.0',
+  description='Reprosim library of routines for modelling the reproductive system.',
+  classifiers = filter(None, classifiers.split("\n")),
+  long_description=doclines,
 )
