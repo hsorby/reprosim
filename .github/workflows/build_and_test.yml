@@ -122,21 +122,21 @@ jobs:
       with:
         path: reprosim
 
-    - name: Run get Fortran environment script
-      id: setup-fortran-win
-      if: runner.os == 'Windows'
-      shell: bash
-      working-directory: reprosim
-      run: |
-        latest_version=`.github/scripts/oneapi-env-vars-location.bat`
-        echo "ifort compiler: $latest_version"
-        # latest_version=`echo $latest_version | tr '\' '/'`
-        # echo $latest_version
-        # echo "::set-output name=env_bat::${latest_version}"
-        echo "fc=${latest_version}" >> $GITHUB_OUTPUT
-        redist_location=`.github/scripts/oneapi-redist-location.bat`
-        echo "redist location: ${redist_location}"
-        echo "redist_loc=${redist_location}" >> $GITHUB_OUTPUT
+#    - name: Run get Fortran environment script
+#      id: setup-fortran-win
+#      if: runner.os == 'Windows'
+#      shell: bash
+#      working-directory: reprosim
+#      run: |
+#        latest_version=`.github/scripts/oneapi-env-vars-location.bat`
+#        echo "ifort compiler: $latest_version"
+#        # latest_version=`echo $latest_version | tr '\' '/'`
+#        # echo $latest_version
+#        # echo "::set-output name=env_bat::${latest_version}"
+#        echo "fc=${latest_version}" >> $GITHUB_OUTPUT
+#        redist_location=`.github/scripts/oneapi-redist-location.bat`
+#        echo "redist location: ${redist_location}"
+#        echo "redist_loc=${redist_location}" >> $GITHUB_OUTPUT
 
     - name: Report CMake version
       run: cmake --version
@@ -182,7 +182,8 @@ jobs:
       shell: cmd
       if: runner.os == 'Windows'
       run: |
-        cmake -S reprosim -B build-reprosim -D CMAKE_Fortran_COMPILER="%INTEL_COMPILER_BIN_PATH:\=/%/ifort.exe" -D Python_EXECUTABLE=${{ steps.create-venv.outputs.python_exe }}
+        echo "Fortran compiler: %FC%"
+        cmake -S reprosim -B build-reprosim -D CMAKE_Fortran_COMPILER="%FC%" -D Python_EXECUTABLE=${{ steps.create-venv.outputs.python_exe }}
     - name: Generate build instructions - Linux
       shell: bash
       if: runner.os == 'Linux'
@@ -235,11 +236,11 @@ jobs:
         
         if [ "${{ runner.os }}" == "Windows" ]; then
           # Horrible hack for GitHub actions Windows virtual machine.
-          prefix_path=$(dirname $(dirname ${{ steps.create-venv.outputs.python_exe }}))
+          #prefix_path=$(dirname $(dirname ${{ steps.create-venv.outputs.python_exe }}))
           
-          cp $prefix_path/Library/bin/libifcoremd.dll $GITHUB_WORKSPACE/venv/Lib/site-packages/aether
-          cp $prefix_path/Library/bin/libmmd.dll $GITHUB_WORKSPACE/venv/Lib/site-packages/aether
-          cp $prefix_path/Library/bin/svml_dispmd.dll $GITHUB_WORKSPACE/venv/Lib/site-packages/aether
+          #cp $prefix_path/Library/bin/libifcoremd.dll $GITHUB_WORKSPACE/venv/Lib/site-packages/aether
+          #cp $prefix_path/Library/bin/libmmd.dll $GITHUB_WORKSPACE/venv/Lib/site-packages/aether
+          #cp $prefix_path/Library/bin/svml_dispmd.dll $GITHUB_WORKSPACE/venv/Lib/site-packages/aether
         fi
 
         cd build-reprosim
