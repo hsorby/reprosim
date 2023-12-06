@@ -186,7 +186,8 @@ jobs:
         echo "Fortran ${{ env.FC }}."
         echo "Fortran ${{ steps.setup-fortran.outputs.fc }}."
         #dir "C:\\Program Files (x86)\\Intel\\oneAPI\\compiler\\2023.2.0\\windows\\bin"
-        cmake -G Ninja -S reprosim -B build-reprosim -D CMAKE_Fortran_COMPILER=ifort -D Python_EXECUTABLE=${{ steps.create-venv.outputs.python_exe }}
+        #cmake -G Ninja -S reprosim -B build-reprosim -D CMAKE_Fortran_COMPILER=ifort -D Python_EXECUTABLE=${{ steps.create-venv.outputs.python_exe }}
+        cmake -S reprosim -B build-reprosim -D CMAKE_Fortran_COMPILER=ifort -D Python_EXECUTABLE=${{ steps.create-venv.outputs.python_exe }}
     - name: Generate build instructions - Linux
       shell: bash
       if: runner.os == 'Linux'
