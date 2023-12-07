@@ -139,7 +139,9 @@ jobs:
 #        echo "redist_loc=${redist_location}" >> $GITHUB_OUTPUT
 
     - name: Report CMake version
-      run: cmake --version
+      run: |
+        cmake --version
+        ninja --version
 
     - name: Create virtual environment
       shell: cmake -P {0}
