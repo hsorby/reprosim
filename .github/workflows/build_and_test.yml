@@ -180,14 +180,21 @@ jobs:
         echo "Fortran ${{ env.FC }}."
         echo "Fortran ${{ steps.setup-fortran.outputs.fc }}."
         echo "C:/Program Files (x86)/Intel/oneAPI/"
+        dir "C:/Program Files (x86)/Intel/oneAPI/"
         echo "C:/Program Files (x86)/Intel/oneAPI/compiler/"
+        dir "C:/Program Files (x86)/Intel/oneAPI/compiler/"
         echo "C:/Program Files (x86)/Intel/oneAPI/compiler/2023.2.0/"
+        dir "C:/Program Files (x86)/Intel/oneAPI/compiler/2023.2.0/"
         echo "C:/Program Files (x86)/Intel/oneAPI/compiler/2023.2.0/windows/"
+        dir "C:/Program Files (x86)/Intel/oneAPI/compiler/2023.2.0/windows/"
         echo "C:/Program Files (x86)/Intel/oneAPI/compiler/2023.2.0/windows/bin/"
+        dir "C:/Program Files (x86)/Intel/oneAPI/compiler/2023.2.0/windows/bin/"
         echo "C:/Program Files (x86)/Intel/oneAPI/compiler/2023.2.0/windows/bin/intel64/"
+        dir "C:/Program Files (x86)/Intel/oneAPI/compiler/2023.2.0/windows/bin/intel64/"
         echo "C:/Program Files (x86)/Intel/oneAPI/compiler/2023.2.0/windows/bin/intel64/ifort.exe"
-        #dir "C:\\Program Files (x86)\\Intel\\oneAPI\\compiler\\2023.2.0\\windows\\bin"
-        #cmake -G Ninja -S reprosim -B build-reprosim -D CMAKE_Fortran_COMPILER=ifort -D Python_EXECUTABLE=${{ steps.create-venv.outputs.python_exe }}
+        dir "C:/Program Files (x86)/Intel/oneAPI/compiler/2023.2.0/windows/bin/intel64/ifort.exe"
+        rem dir "C:\\Program Files (x86)\\Intel\\oneAPI\\compiler\\2023.2.0\\windows\\bin"
+        rem cmake -G Ninja -S reprosim -B build-reprosim -D CMAKE_Fortran_COMPILER=ifort -D Python_EXECUTABLE=${{ steps.create-venv.outputs.python_exe }}
         cmake -S reprosim -B build-reprosim -D CMAKE_Fortran_COMPILER="C:/Program Files (x86)/Intel/oneAPI/compiler/2023.2.0/windows/bin/intel64/ifort.exe" -D Python_EXECUTABLE=${{ steps.create-venv.outputs.python_exe }}
     - name: Generate build instructions - Linux
       shell: bash
@@ -241,6 +248,7 @@ jobs:
         
         if [ "${{ runner.os }}" == "Windows" ]; then
           # Horrible hack for GitHub actions Windows virtual machine.
+          echo "Not sure if this is needed."
           #prefix_path=$(dirname $(dirname ${{ steps.create-venv.outputs.python_exe }}))
           
           #cp $prefix_path/Library/bin/libifcoremd.dll $GITHUB_WORKSPACE/venv/Lib/site-packages/aether
