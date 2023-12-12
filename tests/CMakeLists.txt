@@ -55,10 +55,19 @@ else()
   set(_REPROSIM_LINK_LIBRARY reprosim)
 endif()
 
+get_target_property(_XXXX reprosim INCLUDE_DIRECTORIES)
+get_target_property(_YYYY reprosim INTERFACE_INCLUDE_DIRECTORIES)
+message(STATUS "_XXXX: ${_XXXX}")
+message(STATUS "_YYYY: ${_YYYY}")
+
 set(UTILS_SOURCES data_generator.f90)
 
 add_library(utils ${UTILS_SOURCES})
 target_link_libraries(utils PRIVATE reprosim)
+if (MSVC)
+  target_include_directories("${PROJECT_NAME}-tester" PRIVATE "${_YYYY}")
+else()
+endif()
 
 target_link_libraries(
   "${PROJECT_NAME}-tester"
